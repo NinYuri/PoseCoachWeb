@@ -16,9 +16,14 @@
     box-sizing: border-box;
 }
 
-::before, ::after { box-sizing: border-box; }
+::before,
+::after {
+    box-sizing: border-box;
+}
 
-ul { list-style: none; }
+ul {
+    list-style: none;
+}
 
 button {
     display: block;
@@ -51,8 +56,10 @@ body {
 /* ============================== CONTENT ============================== */
 .exercises {
     flex: 1;
-    margin-top: 80px;       /* Navbar */
-    margin-bottom: 60px;    /* Footer */
+    margin-top: 80px;
+    /* Navbar */
+    margin-bottom: 60px;
+    /* Footer */
     background-image: url('../images/Player.webp');
     background-position: center center;
     background-repeat: no-repeat;
@@ -69,7 +76,7 @@ body {
     margin-left: 4.1em;
 }
 
-.exercises .title{
+.exercises .title {
     text-align: center;
     font-size: 60px;
     font-family: 'Comfortaa', sans-serif;
@@ -110,33 +117,37 @@ body {
     overflow: hidden;
 }
 
-    .newexButton .label {
-        position: relative;
-        z-index: 2;
-    }
+.newexButton .label {
+    position: relative;
+    z-index: 2;
+}
 
-    .newexButton .bttn-line {
-        position: absolute;
-        height: 70%;
-        width: 0.2em;
-        background-color: var(--colorDark);
-        transition: all 0.4s ease;
-        z-index: 1;
-    }
+.newexButton .bttn-line {
+    position: absolute;
+    height: 70%;
+    width: 0.2em;
+    background-color: var(--colorDark);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
 
-    .newexButton .bttn-line.left { 
-        left: 0.5em;
-        border-radius: 5px 0 0 5px; 
-    }
+.newexButton .bttn-line.left {
+    left: 0.5em;
+    border-radius: 5px 0 0 5px;
+}
 
-    .newexButton:hover .bttn-line.left { width: 50%; }
+.newexButton:hover .bttn-line.left {
+    width: 50%;
+}
 
-    .newexButton .bttn-line.right { 
-        right: 0.5em;
-        border-radius: 0 5px 5px 0; 
-    }
+.newexButton .bttn-line.right {
+    right: 0.5em;
+    border-radius: 0 5px 5px 0;
+}
 
-    .newexButton:hover .bttn-line.right { width: 50%; }
+.newexButton:hover .bttn-line.right {
+    width: 50%;
+}
 
 
 /* ============================== FOOTER ============================== */
@@ -169,4 +180,54 @@ footer {
     transition: all 0.3s ease;
 }
 
-.social-circle:hover { background-color: var(--colorSec); }
+.social-circle:hover {
+    background-color: var(--colorSec);
+}
+
+
+/* ================== RESPONSIVE MODIFICATIONS ================== */
+
+/* tablets o pantallas medianas */
+@media (max-width: 992px) {
+    .exercises .container {
+        width: 80%;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .exercises .title {
+        font-size: 45px;
+        -webkit-text-stroke: 3px var(--colorWhite);
+    }
+
+    .newexButton {
+        width: 12em;
+        gap: 3em;
+    }
+}
+
+/* pantalla móvil */
+@media (max-width: 600px) {
+    .exercises .container {
+        width: 100%;
+        margin-left: 0;
+        padding: 130px 20px 100px;
+        text-align: center;
+    }
+
+    .exercises .title {
+        font-size: 32px;
+        -webkit-text-stroke: 2px var(--colorWhite);
+    }
+
+    .exercises .subtitle {
+        font-size: 14px;
+    }
+
+    .newexButton {
+        width: 10em;
+        height: 3em;
+        gap: 1.5em;
+        font-size: 16px;
+    }
+}
