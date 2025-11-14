@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    /* ========== COLORS ========== */
+    --colorDark: #25772A;
+    --colorSec: #4CAF50;
+    --colorPrin: #29812D;
+    --colorWhite: #D9D9D9;
+    --black: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+::before,
+::after { box-sizing: border-box; }
+
+ul { list-style: none; }
+
+button {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+
+/* ============================== REUSABLE ============================== */
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.input-container i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 28px;
+    color: var(--colorPrin);
+}
+
+.input-container .icon { left: 10px; }
+
+.input-container .pass { 
+    right: 12px; 
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.input-container input {
+    width: 100%;
+    border-radius: 0.4em;
+    font-family: 'Figtree', sans-serif;
+    font-size: 19px;
+    color: var(--black);
+    padding: 0.6em 3em 0.6em 2.5em;
+}
+
+
+/* ============================== BODY ============================== */
+body {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.left-section { width: 50%; }
+
+.left-section img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.right-section {
+    position: relative;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+    color: var(--colorWhite);
+}
+
+.right-section img {
+    position: absolute;
+    top: 2em;
+    width: 5em;
+    height: auto;
+}
+
+.right-section h1 {
+    margin-top: 1em;
+    font-family: 'Comfortaa', cursive;
+    font-size: 50px;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 5px var(--colorWhite);
+    text-stroke: 5px var(--colorWhite);
+    paint-order: stroke fill;
+}
+
+.right-section p {
+    font-family: 'Figtree', sans-serif;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.right-section p span {
+    color: var(--colorSec);
+    font-weight: 600;
+}
+
+.right-section .container {
+    width: 66%;
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3em 1.3em 1em 1.3em;
+    border: 1.5px solid var(--colorSec);
+    border-radius: 20px;
+}
+
+.right-section .container form { 
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container.second { margin-top: 2em; }
+
+.logButton {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+    width: 15em;
+    height: 2.6em;
+    background-color: var(--colorWhite);
+    border-radius: 10px;
+    color: var(--black);
+    font-size: 18px;
+    font-family: 'Comfortaa', sans-serif;
+    -webkit-text-stroke: 1px var(--black);
+    text-stroke: 1px var(--black);
+    gap: 5.2em;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.logButton:hover { 
+    -webkit-text-stroke: 1px var(--colorWhite);
+    text-stroke: 1px var(--colorWhite); 
+    color: var(--colorWhite); 
+}
+
+.logButton .label {
+    position: relative;
+    z-index: 2;
+}
+
+.logButton .bttn-line {
+    position: absolute;
+    height: 70%;
+    width: 0.2em;
+    background-color: var(--colorDark);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.logButton .bttn-line.left {
+    left: 0.5em;
+    border-radius: 5px 0 0 5px;
+}
+
+.logButton:hover .bttn-line.left { width: 50%; }
+
+.logButton .bttn-line.right {
+    right: 0.5em;
+    border-radius: 0 5px 5px 0;
+}
+
+.logButton:hover .bttn-line.right { width: 50%; }
+
+.container p {
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.container .forget-password,
+.container .register {
+    font-family: 'Figtree', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--colorSec);
+    cursor: pointer;
+    margin-top: 2em;
+}
+
+.container .forget-password:hover,
+.container .register:hover { text-decoration: underline; }

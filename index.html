@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>PoseCoach</title>
+    <meta name="title" content="PoseCoach">
+    <meta name="description" content="PoseCoach - Your personal exercise companion.">
+    <link rel="icon" href="./assets/images/IconPC.ico">
+
+    <!-- ======================= CSS ======================= -->
+    <link rel="stylesheet" href="./assets/css/login.css">
+
+    <!-- ======================= FONTS ======================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- ======================= ICONS ======================= -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="left-section">
+        <img src="./assets/images/Login.webp" alt="Login">
+    </div>
+
+    <div class="right-section">
+        <img src="./assets/images/LogoPC.webp" alt="Logo">
+
+        <h1>INICIAR SESIÓN</h1>
+        <p>¡Bienvenido de vuelta a <span>PoseCoach</span>!</p>
+
+        <div class="container">
+            <form action="#">
+                <div class="input-container">
+                    <i class="fa-solid fa-user icon"></i>
+                    <input type="text" id="identificador" name="identificador" placeholder="Celular o correo electrónico" required>
+                </div>
+
+                <div class="input-container second">
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    <i class="fa-solid fa-eye pass"></i>
+                </div>
+
+                <button class="logButton" type="submit">
+                    <div class="bttn-line left"></div>
+                    <span class="label">ENTRAR</span>
+                    <div class="bttn-line right"></div>
+                </button>
+
+                <span class="forget-password">¿Olvidaste tu contraseña?</span>
+                <p>¿No tienes una cuenta? <span class="register"> ¡Regístrate aquí!</span></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="./assets/js/index.js"></script>
+</body>
+</html>
