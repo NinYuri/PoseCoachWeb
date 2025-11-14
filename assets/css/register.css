@@ -46,13 +46,14 @@ input {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 28px;
+    font-size: 26px;
     color: var(--colorPrin);
 }
 
 .input-container .icon { left: 10px; }
 
-.input-container .pass { 
+.input-container .pass,
+.input-container .conf-pass { 
     right: 12px; 
     font-size: 26px;
     cursor: pointer;
@@ -137,12 +138,12 @@ body {
 
 .right-section .container {
     width: 66%;
-    margin-top: 5em;
+    margin-top: 4.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3em 1.3em 1em 1.3em;
+    padding: 1.5em 1.3em;
     border: 1.5px solid var(--colorSec);
     border-radius: 20px;
 }
@@ -155,9 +156,65 @@ body {
     align-items: center;
 }
 
-.input-container.second { margin-top: 2em; }
+.container form .options {
+    width: 60%;
+    display: flex;
+    margin-bottom: 1.7em;
+}
 
-.logButton {
+.options .email-opt,
+.options .telephone-opt {
+    position: relative;
+    width: 50%;
+    padding: 0.5em 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comfortaa', cursive;
+    font-size: 12px;
+    background-color: var(--colorWhite);
+    color: var(--black);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.options .email-opt { border-radius: 8px 0 0 8px; }
+
+.options .telephone-opt { border-radius: 0 8px 8px 0; }
+
+.options .email-opt::after,
+.options .telephone-opt::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--colorDark);
+    z-index: -1;
+    transition: width 0.4s ease;
+}
+
+.options .email-opt::after { right: 0; }
+
+.options .telephone-opt::after { left: 0; }
+
+.options .email-opt.selected::after {
+    border-radius: 8px 0 0 8px;
+    width: 100%;
+}
+
+.options .telephone-opt.selected::after {
+    border-radius: 0 8px 8px 0;
+    width: 100%;
+}
+
+.options .email-opt.selected,
+.options .telephone-opt.selected { color: var(--colorWhite); }
+
+.input-container.second { margin-top: 1.5em; }
+
+.regButton {
     position: relative;
     z-index: 2;
     display: flex;
@@ -178,18 +235,18 @@ body {
     overflow: hidden;
 }
 
-.logButton:hover { 
+.regButton:hover { 
     -webkit-text-stroke: 1px var(--colorWhite);
     text-stroke: 1px var(--colorWhite); 
     color: var(--colorWhite); 
 }
 
-.logButton .label {
+.regButton .label {
     position: relative;
     z-index: 2;
 }
 
-.logButton .bttn-line {
+.regButton .bttn-line {
     position: absolute;
     height: 70%;
     width: 0.2em;
@@ -198,34 +255,16 @@ body {
     z-index: 1;
 }
 
-.logButton .bttn-line.left {
+.regButton .bttn-line.left {
     left: 0.5em;
     border-radius: 5px 0 0 5px;
 }
 
-.logButton:hover .bttn-line.left { width: 50%; }
+.regButton:hover .bttn-line.left { width: 50%; }
 
-.logButton .bttn-line.right {
+.regButton .bttn-line.right {
     right: 0.5em;
     border-radius: 0 5px 5px 0;
 }
 
-.logButton:hover .bttn-line.right { width: 50%; }
-
-.container p {
-    font-size: 13px;
-    margin-top: 3px;
-}
-
-.container .forget-password,
-.container .register {
-    font-family: 'Figtree', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--colorSec);
-    cursor: pointer;
-    margin-top: 2em;
-}
-
-.container .forget-password:hover,
-.container .register:hover { text-decoration: underline; }
+.regButton:hover .bttn-line.right { width: 50%; }

@@ -11,7 +11,7 @@
     <link rel="icon" href="./assets/images/IconPC.ico">
 
     <!-- ======================= CSS ======================= -->
-    <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="stylesheet" href="./assets/css/register.css">
 
     <!-- ======================= FONTS ======================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,20 +27,30 @@
 
 <body>
     <div class="left-section">
-        <img src="./assets/images/Login.webp" alt="Login">
+        <img src="./assets/images/Register.webp" alt="Register">
     </div>
 
     <div class="right-section">
         <img src="./assets/images/LogoPC.webp" alt="Logo">
 
-        <h1>INICIAR SESIÓN</h1>
-        <p>¡Bienvenido de vuelta a <span>PoseCoach</span>!</p>
+        <h1>REGISTRO</h1>
+        <p>¡<span>Únete</span> a la experiencia de PoseCoach!</p>
 
         <div class="container">
-            <form method="post" class="loginForm" novalidate>
-                <div class="input-container">
-                    <i class="fa-solid fa-user icon"></i>
-                    <input type="text" id="identificador" name="identificador" placeholder="Nombre de Usuario">
+            <form method="post" class="registerForm" novalidate>
+                <div class="options">
+                    <div class="email-opt selected">
+                        <h3>Email</h3>
+                    </div>
+                    
+                    <div class="telephone-opt">
+                        <h3>Teléfono</h3>
+                    </div>
+                </div>
+
+                <div class="input-container register">
+                    <i class="fa-solid fa-envelope icon"></i>
+                    <input type="email" id="email" name="email" placeholder="Correo Electrónico">
                 </div>
 
                 <div class="input-container second">
@@ -49,18 +59,21 @@
                     <i class="fa-solid fa-eye pass"></i>
                 </div>
 
-                <button class="logButton" type="submit">
+                <div class="input-container second">
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña">
+                    <i class="fa-solid fa-eye conf-pass"></i>
+                </div>
+
+                <button class="regButton" type="submit">
                     <div class="bttn-line left"></div>
-                    <span class="label">ENTRAR</span>
+                    <span class="label">CONTINUAR</span>
                     <div class="bttn-line right"></div>
                 </button>
-
-                <span class="forget-password">¿Olvidaste tu contraseña?</span>
-                <p>¿No tienes una cuenta? <span class="register"> ¡Regístrate aquí!</span></p>
             </form>
         </div>
     </div>
 
-    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/register.js"></script>
 </body>
 </html>
