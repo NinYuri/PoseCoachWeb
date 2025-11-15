@@ -157,6 +157,8 @@ body {
 
 .input-container.second { margin-top: 2em; }
 
+.input-container #identificador { padding-right: 1em; }
+
 .logButton {
     position: relative;
     z-index: 2;

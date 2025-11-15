@@ -11,7 +11,7 @@
     <link rel="icon" href="./assets/images/IconPC.ico">
 
     <!-- ======================= CSS ======================= -->
-    <link rel="stylesheet" href="./assets/css/register.css">
+    <link rel="stylesheet" href="./assets/css/otpRegister.css">
 
     <!-- ======================= FONTS ======================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,49 +33,32 @@
     <div class="right-section">
         <img src="./assets/images/LogoPC.webp" alt="Logo">
 
-        <h1>REGISTRO</h1>
-        <p>¡<span>Únete</span> a la experiencia de PoseCoach!</p>
+        <h1>VERIFICA TU</h1>
+        <h2>IDENTIDAD</h2>
+        <p>Por favor, introduce el <span>código </span>que te envié</p>
 
         <div class="container">
-            <form method="post" class="registerForm" novalidate>
-                <div class="options">
-                    <div class="email-opt selected">
-                        <h3>Email</h3>
-                    </div>
-                    
-                    <div class="telephone-opt">
-                        <h3>Teléfono</h3>
-                    </div>
+            <form method="post" class="otpRegister" novalidate>
+                <div class="otp-boxes">
+                    <input type="text" maxlength="1" class="otp-digit">
+                    <input type="text" maxlength="1" class="otp-digit">
+                    <input type="text" maxlength="1" class="otp-digit">
+                    <input type="text" maxlength="1" class="otp-digit">
+                    <input type="text" maxlength="1" class="otp-digit">
+                    <input type="text" maxlength="1" class="otp-digit">
                 </div>
 
-                <div class="input-container register">
-                    <i class="fa-solid fa-envelope icon"></i>
-                    <input type="email" id="email" name="email" placeholder="Correo Electrónico">
-                </div>
-
-                <div class="input-container second">
-                    <i class="fa-solid fa-lock icon"></i>
-                    <input type="password" id="password" name="password" placeholder="Contraseña">
-                    <i class="fa-solid fa-eye pass"></i>
-                </div>
-
-                <div class="input-container second">
-                    <i class="fa-solid fa-lock icon"></i>
-                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña">
-                    <i class="fa-solid fa-eye conf-pass"></i>
-                </div>
-
-                <button class="regButton" type="submit">
+                <button class="otpButton" type="submit">
                     <div class="bttn-line left"></div>
-                    <span class="label">CONTINUAR</span>
+                    <span class="label">ENTRAR</span>
                     <div class="bttn-line right"></div>
                 </button>
 
-                <p>¿Ya tienes una cuenta? <span class="login"> ¡Inicia sesión!</span></p>
+                <p>¿No recibiste el código? <span class="resend"> Reenviar</span></p>
             </form>
         </div>
     </div>
 
-    <script src="./assets/js/register.js"></script>
+    <script src="./assets/js/otpRegister.js"></script>
 </body>
 </html>

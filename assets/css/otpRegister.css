@@ -2,6 +2,7 @@
 
 :root {
     /* ========== COLORS ========== */
+    --colorDarker: #1D5E21;
     --colorDark: #25772A;
     --colorSec: #4CAF50;
     --colorPrin: #29812D;
@@ -33,39 +34,6 @@ button {
 input {
     border: none;
     outline: none;
-}
-
-
-/* ============================== REUSABLE ============================== */
-.input-container {
-    position: relative;
-    width: 100%;
-}
-
-.input-container i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 26px;
-    color: var(--colorPrin);
-}
-
-.input-container .icon { left: 10px; }
-
-.input-container .pass,
-.input-container .conf-pass { 
-    right: 12px; 
-    font-size: 26px;
-    cursor: pointer;
-}
-
-.input-container input {
-    width: 100%;
-    border-radius: 0.4em;
-    font-family: 'Figtree', sans-serif;
-    font-size: 19px;
-    color: var(--black);
-    padding: 0.6em 3em 0.6em 2.5em;
 }
 
 
@@ -125,10 +93,20 @@ body {
     paint-order: stroke fill;
 }
 
+.right-section h2 {
+    margin-top: 0.2em;
+    font-family: 'Comfortaa', cursive;
+    font-size: 27px;
+    letter-spacing: 3px;
+    -webkit-text-stroke: 3px var(--colorWhite);
+    text-stroke: 3px var(--colorWhite);
+    paint-order: stroke fill;
+}
+
 .right-section p {
     font-family: 'Figtree', sans-serif;
     font-size: 20px;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
 .right-section p span {
@@ -143,106 +121,36 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1.5em 1.3em 1em 1.3em;
+    padding: 3em 1.3em 1em 1.3em;
     border: 1.5px solid var(--colorSec);
     border-radius: 20px;
 }
 
-.right-section .container form { 
-    width: 100%; 
+.right-section .container form {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.container form .options {
-    width: 60%;
+.container .otp-boxes {
+    width: 100%;
     display: flex;
-    margin-bottom: 1.7em;
-}
-
-.options .email-opt,
-.options .telephone-opt {
-    position: relative;
-    width: 50%;
-    padding: 0.5em 3em;
-    display: flex;
+    gap: 18px;
     justify-content: center;
-    align-items: center;
-    font-family: 'Comfortaa', cursive;
-    font-size: 12px;
-    background-color: var(--colorWhite);
-    color: var(--black);
-    cursor: pointer;
-    transition: all 0.4s ease;
-    z-index: 2;
 }
 
-.options .email-opt { border-radius: 8px 0 0 8px; }
-
-.options .telephone-opt { border-radius: 0 8px 8px 0; }
-
-.options .email-opt::after,
-.options .telephone-opt::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 0%;
-    height: 100%;
-    background-color: var(--colorDark);
-    z-index: -1;
-    transition: width 0.4s ease;
+.otp-digit {
+    width: 40px;
+    height: 45px;
+    border-radius: 0.3em;
+    text-align: center;
+    font-family: 'Figtree', 'sans-serif';
+    font-size: 20px;
 }
 
-.options .email-opt::after { right: 0; }
-
-.options .telephone-opt::after { left: 0; }
-
-.options .email-opt.selected::after {
-    border-radius: 8px 0 0 8px;
-    width: 100%;
-}
-
-.options .telephone-opt.selected::after {
-    border-radius: 0 8px 8px 0;
-    width: 100%;
-}
-
-.options .email-opt.selected,
-.options .telephone-opt.selected { color: var(--colorWhite); }
-
-.input-container.second { margin-top: 1.5em; }
-
-.input-container #email,
-.input-container #phone { padding-right: 1em; }
-
-.input-container #phone { padding-left: 6.1em; }
-
-.input-container .country-select,
-.input-container .flag-display {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);    
-    color: var(--black);
-}
-
-.input-container .flag-display {
-    left: 2.6em;
-    transform: translateY(-63%);
-    font-size: 1em;
-}
-
-.input-container .country-select {
-    left: 4.4em;
-    border: none;
-    user-select: none;
-    font-family: 'Figtree', sans-serif;
-    font-size: 0.9em;
-    cursor: pointer;
-}
-
-.regButton {
+.otpButton {
     position: relative;
     z-index: 2;
     display: flex;
@@ -263,18 +171,18 @@ body {
     overflow: hidden;
 }
 
-.regButton:hover { 
+.otpButton:hover { 
     -webkit-text-stroke: 1px var(--colorWhite);
     text-stroke: 1px var(--colorWhite); 
     color: var(--colorWhite); 
 }
 
-.regButton .label {
+.otpButton .label {
     position: relative;
     z-index: 2;
 }
 
-.regButton .bttn-line {
+.otpButton .bttn-line {
     position: absolute;
     height: 70%;
     width: 0.2em;
@@ -283,30 +191,30 @@ body {
     z-index: 1;
 }
 
-.regButton .bttn-line.left {
+.otpButton .bttn-line.left {
     left: 0.5em;
     border-radius: 5px 0 0 5px;
 }
 
-.regButton:hover .bttn-line.left { width: 50%; }
+.otpButton:hover .bttn-line.left { width: 50%; }
 
-.regButton .bttn-line.right {
+.otpButton .bttn-line.right {
     right: 0.5em;
     border-radius: 0 5px 5px 0;
 }
 
-.regButton:hover .bttn-line.right { width: 50%; }
+.otpButton:hover .bttn-line.right { width: 50%; }
 
-.container p { 
-    font-size: 13px; 
-    margin-top: 1.5em;
+.container p {
+    font-size: 13px;
+    margin-top: 2.5em;
 }
 
-.container .login {
+.container .resend {
     font-family: 'Figtree', sans-serif;
     font-weight: 600;
     color: var(--colorSec);
     cursor: pointer;
 }
 
-.container .login:hover { text-decoration: underline; }
+.container .resend:hover { text-decoration: underline; }

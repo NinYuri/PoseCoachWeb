@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     passwordVisibility();
+    password();
     register();
     loginUser();
 });
@@ -20,6 +21,12 @@ function passwordVisibility() {
     });
 }
 
+function password() {
+    document.querySelector(".forget-password").addEventListener("click", () => {
+        window.location.href = 'forgetPass.html';
+    });
+}
+
 
 /* ================================= REGISTRO ================================= */
 function register() {
@@ -31,7 +38,20 @@ function register() {
 
 /* ================================= VALIDACIONES ================================= */
 function validate() {
+    const user = document.getElementById("identificador").value;
+    const password = document.getElementById("password").value;
+
+    if(user === "") {
+        Toast('error', 'Por favor, escribe tu nombre de usuario');
+        return false;
+    }
     
+    if(password === "") {
+        Toast('error', 'Por favor, escribe tu contraseña');
+        return false;
+    }
+    
+    return true;
 }
 
 
@@ -40,12 +60,13 @@ async function loginUser() {
     document.querySelector(".loginForm").addEventListener("submit", async function(e) {
         e.preventDefault();
 
+        if(!validate()) return;
+
         const data = {
             identificador: document.getElementById("identificador").value,
             password: document.getElementById("password").value,
         }
 
-        // URL Casa
         const URL = 'http://127.0.0.1:4000/users/login/'
         try {
             const response = await fetch(URL, {
@@ -58,7 +79,7 @@ async function loginUser() {
             
             const result = await response.json();
 
-            if (response.ok) {
+            if(response.ok) {
                 Toast('success', '¡Inicio de sesión exitoso!');
                 document.querySelector(".loginForm").reset();
                 
@@ -68,7 +89,7 @@ async function loginUser() {
             } else
                 Errores(result);
         } catch(e) {
-            Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde.');
+            Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
         }
     });
 }
@@ -76,6 +97,11 @@ async function loginUser() {
 
 /* ================================= ERRORES ================================= */
 function Errores(errores) {
+    if(!errores || !errores.error) {
+        Toast('error', 'Ocurrió un error inesperado');
+        return;
+    }
+    
     const primerError = Object.values(errores)[0][0];
     Toast('error', primerError);
 }
