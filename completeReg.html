@@ -32,6 +32,93 @@
 
     <div class="right-section">
         <img src="./assets/images/LogoPC.webp" alt="Logo">
+
+        <h1>COMPLETA TU PERFIL</h1>
+        <p>Agrega tus <span>datos personales </span> para continuar</p>
+
+        <div class="container">
+            <form method="post" class="personalInfo" novalidate>
+                <div class="input-container">
+                    <i class="fa-solid fa-user icon"></i>
+                    <input type="text" id="username" name="username" placeholder="Nombre de Usuario">
+                </div>
+
+                <div class="input-container second">
+                    <i class="fa-solid fa-calendar icon"></i>
+                    <input type="text" id="date_birth" name="date_birth" placeholder="Fecha de Nacimiento">
+
+                    <div class="datepicker" hidden>
+                        <div class="datepicker-header">
+                            <button class="prev" type="button">Ant</button>
+
+                            <div class="months">
+                                <select class="month-input">
+                                    <option>Enero</option>
+                                    <option>Febrero</option>
+                                    <option>Marzo</option>
+                                    <option>Abril</option>
+                                    <option>Mayo</option>
+                                    <option>Junio</option>
+                                    <option>Julio</option>
+                                    <option>Agosto</option>
+                                    <option>Septiembre</option>
+                                    <option>Octubre</option>
+                                    <option>Noviembre</option>
+                                    <option>Diciembre</option>
+                                </select>
+                                <input type="number" class="year-input" value="2024">
+                            </div>
+
+                            <button class="next" type="button">Sig</button>
+                        </div>
+
+                        <div class="days">
+                            <span>DOM</span>
+                            <span>LUN</span>
+                            <span>MAR</span>
+                            <span>MIE</span>
+                            <span>JUE</span>
+                            <span>VIE</span>
+                            <span>SAB</span>
+                        </div>
+
+                        <div class="dates"></div>
+
+                        <div class="datepicker-footer">
+                            <button class="cancel" type="button">Cancelar</button>
+                            <button class="apply" type="button">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="both">
+                    <div class="input-container half">
+                        <i class="fa-solid fa-mars-and-venus icon"></i>
+
+                        <select id="sex" name="sex">
+                            <option value="" disabled selected class="placeholder">Género</option>
+                            <option value="masculino" class="gender">Masculino</option>
+                            <option value="femenino" class="gender">Femenino</option>
+                        </select>
+
+                        <span class="select-arrow"><i class="fa-solid fa-caret-down"></i></span>
+                    </div>
+
+                    <div class="input-container half">
+                        <i class="fa-solid fa-person icon"></i>
+                        <input type="number" id="height" name="height" placeholder="Altura" min="140" max="200">
+                    </div>
+                </div>
+
+                <button class="compButton" type="submit">
+                    <div class="bttn-line left"></div>
+                    <span class="label">CONTINUAR</span>
+                    <div class="bttn-line right"></div>
+                </button>
+            </form>
+        </div>
     </div>
+
+    <script src="./assets/js/completeReg.js"></script>
 </body>
 </html>

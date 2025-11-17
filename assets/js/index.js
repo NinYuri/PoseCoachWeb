@@ -41,12 +41,12 @@ function validate() {
     const user = document.getElementById("identificador").value;
     const password = document.getElementById("password").value;
 
-    if(user === "") {
+    if(user === "" || user.trim() === "") {
         Toast('error', 'Por favor, escribe tu nombre de usuario');
         return false;
     }
     
-    if(password === "") {
+    if(password === "" || password.trim() === "") {
         Toast('error', 'Por favor, escribe tu contraseña');
         return false;
     }
@@ -67,7 +67,7 @@ async function loginUser() {
             password: document.getElementById("password").value,
         }
 
-        const URL = 'http://127.0.0.1:4000/users/login/'
+        const URL = 'http://127.0.0.1:4000/users/login/';
         try {
             const response = await fetch(URL, {
                 method: 'POST',

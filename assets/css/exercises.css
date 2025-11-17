@@ -63,6 +63,13 @@ body {
     width: auto;
 }
 
+.navbar h1 {
+    margin-left: 1em;
+    color: var(--colorWhite);
+    font-family: 'Figtree', sans-serif;
+    font-size: 1.5em;
+}
+
 
 /* ============================== CONTENT ============================== */
 .exercises {

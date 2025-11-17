@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     otpDigits();
-    otpRegister();
+    otpPassword();
     resendOTP();
 });
 
@@ -43,63 +43,58 @@ function validate() {
         code += input.value;
     }
 
+    if(code !== localStorage.getItem("otpPass")) {
+        Toast('error', 'Lo siento, el código OTP es incorrecto');
+        return false;
+    }
+
+    if(checkOTPExp()) {
+        Toast('error', 'Lo siento, el código OTP ha expirado');
+        return false;
+    }
+
     return true;
 }
 
 
-/* ================================= BACKEND OTP REGISTRO ================================= */
-async function otpRegister() {
-    document.querySelector(".otpRegister").addEventListener("submit", async function(e) {
+/* ================================= OTP CONTRASEÑA ================================= */
+// EXPIRATION
+function checkOTPExp() {
+    const startTime = localStorage.getItem("otpTime");
+    if(!startTime) return true;
+
+    const now = Date.now();
+    const elapsedMinutes = (now - parseInt(startTime)) / (1000 * 60);
+
+    return elapsedMinutes >= 9
+}
+
+function otpPassword() {
+    document.querySelector(".otpPassword").addEventListener("submit", function(e) {
         e.preventDefault();
 
         if(!validate()) return;
 
-        const data = {
-            temporal_id: localStorage.getItem("temporal_id"),
-            otp: code,
-        }
-
-        const URL = 'http://127.0.0.1:4000/users/register/otp/';
-        try {
-            const response = await fetch(URL, {
-                method: 'POST',
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            const result = await response.json();
-
-            if(response.ok) {
-                Toast('success', result.mensaje);
-                document.querySelector(".otpRegister").reset();
-
-                setTimeout(() => {
-                    window.location.href = 'completeReg.html';
-                }, 2000);
-            } else
-                Errores(result);
-        } catch(e) {
-            Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
-            console.log(e);
-        }
+        Toast('success', 'Código OTP verificado exitosamente');
+        setTimeout(() => {
+            window.location.href = 'newPass.html';
+        }, 2000);
     });
 }
 
 
 /* ================================= BACKEND OTP REENVIAR ================================= */
 async function resendOTP() {
-    document.querySelector(".resend").addEventListener("click", async() => {
-        const phone = localStorage.getItem("phone") || "";
-        const email = localStorage.getItem("email") || "";
+    document.querySelector('.resend').addEventListener("click", async() => {
+        const phone = localStorage.getItem("phonePassword") || "";
+        const email = localStorage.getItem("emailPassword") || "";
 
         const data = {
             phone: phone,
             email: email,
         }
-        
-        const URL = 'http://127.0.0.1:4000/users/register/otpresend/';
+
+        const URL = 'http://127.0.0.1:4000/users/password/otp/';
         try {
             const response = await fetch(URL, {
                 method: 'POST',
@@ -113,8 +108,11 @@ async function resendOTP() {
 
             if(response.ok) {
                 Toast('success', result.mensaje);
-                if(result.temporal_id)
-                    localStorage.setItem("temporal_id", result.temporal_id);
+
+                if(result.otp)
+                    localStorage.setItem("otpPass", result.otp);
+                
+                localStorage.setItem("otpTime", Date.now());
             } else
                 Toast('error', result.error);
         } catch(e) {
@@ -138,6 +136,7 @@ function Errores(errores) {
 
     Toast("error", mensaje);
 }
+
 
 function Toast(icon, titulo) {
     const Toast = Swal.mixin({

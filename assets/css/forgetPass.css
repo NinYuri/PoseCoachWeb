@@ -37,6 +37,39 @@ input {
 }
 
 
+/* ============================== REUSABLE ============================== */
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.input-container i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    color: var(--colorPrin);
+}
+
+.input-container .icon { left: 10px; }
+
+.input-container .pass,
+.input-container .conf-pass { 
+    right: 12px; 
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.input-container input {
+    width: 100%;
+    border-radius: 0.4em;
+    font-family: 'Figtree', sans-serif;
+    font-size: 19px;
+    color: var(--black);
+    padding: 0.6em 3em 0.6em 2.5em;
+}
+
+
 /* ============================== TOAST ============================== */
 .colored-toast.swal2-icon-error,
 .colored-toast.swal2-icon-success { background-color: var(--colorDark); }
@@ -82,3 +115,212 @@ body {
     width: 5em;
     height: auto;
 }
+
+.right-section h1 {
+    margin-top: 1em;
+    font-family: 'Comfortaa', cursive;
+    font-size: 50px;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 5px var(--colorWhite);
+    text-stroke: 5px var(--colorWhite);
+    paint-order: stroke fill;
+}
+
+.right-section h2 {
+    margin-top: 0.3em;
+    font-family: 'Comfortaa', cursive;
+    font-size: 27px;
+    letter-spacing: 3px;
+    -webkit-text-stroke: 3px var(--colorWhite);
+    text-stroke: 3px var(--colorWhite);
+    paint-order: stroke fill;
+}
+
+.right-section p {
+    font-family: 'Figtree', sans-serif;
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.right-section p span {
+    color: var(--colorSec);
+    font-weight: 600;
+}
+
+.right-section .container {
+    width: 66%;
+    margin-top: 4.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5em 1.3em 1em 1.3em;
+    border: 1.5px solid var(--colorSec);
+    border-radius: 20px;
+}
+
+.right-section .container form {
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container form .options {
+    width: 60%;
+    display: flex;
+    margin-bottom: 2.5em;
+}
+
+.options .email-opt,
+.options .telephone-opt {
+    position: relative;
+    width: 50%;
+    padding: 0.5em 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comfortaa', cursive;
+    font-size: 12px;
+    background-color: var(--colorWhite);
+    color: var(--black);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.options .email-opt { border-radius: 8px 0 0 8px; }
+
+.options .telephone-opt { border-radius: 0 8px 8px 0; }
+
+.options .email-opt::after,
+.options .telephone-opt::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--colorDark);
+    z-index: -1;
+    transition: width 0.4s ease;
+}
+
+.options .email-opt::after { right: 0; }
+
+.options .telephone-opt::after { left: 0; }
+
+.options .email-opt.selected::after {
+    border-radius: 8px 0 0 8px;
+    width: 100%;
+}
+
+.options .telephone-opt.selected::after {
+    border-radius: 0 8px 8px 0;
+    width: 100%;
+}
+
+.options .email-opt.selected,
+.options .telephone-opt.selected { color: var(--colorWhite); }
+
+.input-container #email,
+.input-container #phone { padding-right: 1em; }
+
+.input-container #phone { padding-left: 6.1em; }
+
+.input-container .country-select,
+.input-container .flag-display {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);    
+    color: var(--black);
+}
+
+.input-container .flag-display {
+    left: 2.6em;
+    transform: translateY(-63%);
+    font-size: 1em;
+}
+
+.input-container .country-select {
+    left: 4.4em;
+    border: none;
+    user-select: none;
+    font-family: 'Figtree', sans-serif;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.passwordOtp {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.5em;
+    width: 15em;
+    height: 2.6em;
+    background-color: var(--colorWhite);
+    border-radius: 10px;
+    color: var(--black);
+    font-size: 18px;
+    font-family: 'Comfortaa', sans-serif;
+    -webkit-text-stroke: 1px var(--black);
+    text-stroke: 1px var(--black);
+    gap: 5.2em;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.passwordOtp:hover {
+    -webkit-text-stroke: 1px var(--colorWhite);
+    text-stroke: 1px var(--colorWhite); 
+    color: var(--colorWhite); 
+}
+
+.passwordOtp .label {
+    position: relative;
+    z-index: 2;
+}
+
+.passwordOtp .bttn-line {
+    position: absolute;
+    height: 70%;
+    width: 0.2em;
+    background-color: var(--colorDark);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.passwordOtp .bttn-line.left {
+    left: 0.5em;
+    border-radius: 5px 0 0 5px;
+}
+
+.passwordOtp:hover .bttn-line.left { width: 50%; }
+
+.passwordOtp .bttn-line.right {
+    right: 0.5em;
+    border-radius: 0 5px 5px 0;
+}
+
+.passwordOtp:hover .bttn-line.right { width: 50%; }
+
+.container .login,
+.container .register {
+    font-family: 'Figtree', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--colorSec);
+    cursor: pointer;
+    margin-top: 2em;
+}
+
+.container p { 
+    font-size: 13px; 
+    margin-top: 3px;
+}
+
+.container .login:hover,
+ .container .register:hover{ text-decoration: underline; }

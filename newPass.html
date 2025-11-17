@@ -11,7 +11,7 @@
     <link rel="icon" href="./assets/images/IconPC.ico">
 
     <!-- ======================= CSS ======================= -->
-    <link rel="stylesheet" href="./assets/css/forgetPass.css">
+    <link rel="stylesheet" href="./assets/css/newPass.css">
 
     <!-- ======================= FONTS ======================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,39 +33,34 @@
     <div class="right-section">
         <img src="./assets/images/LogoPC.webp" alt="Logo">
 
-        <h1>¿OLVIDASTE</h1>
-        <h2>TU CONTRASEÑA?</h2>
-        <p>No te preocupes, ingresa tu <span>correo electrónico</span> y te enviaremos un código para recuperarla</p>
+        <h1>NUEVA CONTRASEÑA</h1>
+        <p>Tu nueva contraseña debe ser <span>segura </span>y <span>fácil de recordar</span></p>
 
         <div class="container">
-            <form method="post" class="passForm" novalidate>
-                <div class="options">
-                    <div class="email-opt selected">
-                        <h3>Email</h3>
-                    </div>
-
-                    <div class="telephone-opt">
-                        <h3>Teléfono</h3>
-                    </div>
+            <form method="post" class="newPass" novalidate>
+                <div class="input-container">
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input type="password" id="new_password" name="new_password" placeholder="Nueva contraseña">
+                    <i class="fa-solid fa-eye new-pass"></i>
                 </div>
 
-                <div class="input-container info">
-                    <i class="fa-solid fa-envelope icon"></i>
-                    <input type="email" id="email" name="email" placeholder="Correo Electrónico">
+                <div class="input-container second">
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input type="password" id="new_password_confirm" name="new_password_confirm" placeholder="Confirma la nueva contraseña">
+                    <i class="fa-solid fa-eye conf-pass"></i>
                 </div>
 
-                <button class="passwordOtp" type="submit">
+                <button class="passButton" type="submit">
                     <div class="bttn-line left"></div>
-                    <span class="label">ENVIAR CÓDIGO</span>
+                    <span class="label">ACTUALIZAR</span>
                     <div class="bttn-line right"></div>
                 </button>
 
-                <span class="login">¡Iniciar sesión!</span>
-                <p>¿No tienes una cuenta? <span class="register"> ¡Regístrate aquí!</span></p>
+                <p>¿Problemas con el código? <span class="resetOTP">Regresar a OTP</span></p>
             </form>
         </div>
     </div>
 
-    <script src="./assets/js/forgetPass.js"></script>
+    <script src="./assets/js/newPass.js"></script>
 </body>
 </html>

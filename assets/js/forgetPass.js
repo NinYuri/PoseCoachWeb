@@ -1,32 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    passwordVisibility();
     options();
     login();
-    registerUser();
+    register();
+    forgotPassword();
 });
-
-
-/* ================================= CONTRASEÑA ================================= */
-function passwordVisibility() {
-    const password = document.getElementById("password");
-    const iconPass = document.querySelector(".pass");
-    const confPassword = document.getElementById("confirm_password");
-    const iconConf = document.querySelector(".conf-pass");
-
-    iconPass.addEventListener("click", () => {
-        const isPassword = password.type === "password";
-        password.type = isPassword ? "text" : "password";
-        iconPass.classList.toggle("fa-eye");
-        iconPass.classList.toggle("fa-eye-slash");
-    });
-
-    iconConf.addEventListener("click", () => {
-        const isPassword = confPassword.type === "password";
-        confPassword.type = isPassword ? "text" : "password";
-        iconConf.classList.toggle("fa-eye");
-        iconConf.classList.toggle("fa-eye-slash");
-    });
-}
 
 
 /* ================================= OPCIONES ================================= */
@@ -42,8 +19,8 @@ const countries = [
 ];
 
 function options() {
-    const form = document.querySelector(".registerForm")
-    const container = document.querySelector(".register");
+    const form = document.querySelector(".passForm")
+    const container = document.querySelector(".info");
     const emailOpt = document.querySelector(".email-opt");
     const telephoneOpt = document.querySelector(".telephone-opt");
 
@@ -114,29 +91,35 @@ function login() {
 }
 
 
+/* ================================= REGISTRO ================================= */
+function register() {
+    document.querySelector(".register").addEventListener("click", () => {
+        window.location.href = 'register.html';
+    });
+}
+
+
 /* ================================= VALIDACIONES ================================= */
 function validate() {
     const email = document.getElementById("email") ? document.getElementById("email").value : null;
     const phone = document.getElementById("phone") ? document.getElementById("phone").value : null;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm_password").value;
 
     const emailRegex = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-    if (email !== null) {
-        if (email === "" || email.trim() === "") {
-            Toast('error', 'Por favor, escribe tu correo electrónico para continuar');
+    if(email !== null) {
+        if(email === "" || email.trim() === "") {
+            Toast('error', 'Por favor, escribe tu correo electrónico para enviar el código');
             return false;
         }
-        if (!emailRegex.test(email)) {
+        if(!emailRegex.test(email)) {
             Toast('error', 'Por favor, ingresa un correo electrónico válido');
             return false;
         }
     }
 
-    if (phone !== null) {
-        if (phone === "" || phone.trim() === "") {
-            Toast('error', 'Por favor, escribe tu número telefónico para continuar');
+    if(phone !== null) {
+        if(phone === "" || phone.trim() === "") {
+            Toast('error', 'Por favor, escribe tu número telefónico para enviar el código');
             return false;
         }
         if (!validPhone(phone)) {
@@ -149,24 +132,6 @@ function validate() {
         }
     }
 
-    if(password === "" || password.trim() === "") {
-        Toast('error', 'Por favor, escribe tu contraseña');
-        return false;
-    } else if (password.length < 8) {
-        Toast('error', 'La contraseña debe tener al menos 8 caracteres');
-        return false;
-    }
-
-    if(confirmPassword === "" || confirmPassword.trim() === "") {
-        Toast('error', 'Por favor, confirma tu contraseña');
-        return false;
-    }
-
-    if(password !== confirmPassword) {
-        Toast('error', 'Lo siento, las contraseñas no coinciden');
-        return false;
-    }
-
     return true;
 }
 
@@ -177,24 +142,29 @@ function validPhone(phone) {
 }
 
 
-/* ================================= BACKEND REGISTRO ================================= */
-async function registerUser() {
-    document.querySelector(".registerForm").addEventListener("submit", async function(e) {
+/* ================================= BACKEND CONTRASEÑA ================================= */
+async function forgotPassword() {
+    document.querySelector(".passForm").addEventListener("submit", async function(e) {
         e.preventDefault();
 
         if(!validate()) return;
-        
-        const countryCode = document.getElementById("country-code") ? document.getElementById("country-code").value : "";
-        const phone = document.getElementById("phone") ? document.getElementById("phone").value : ""
 
-        const data = {
-            phone: countryCode + phone,
-            email: document.getElementById("email") ? document.getElementById("email").value : "",
-            password: document.getElementById("password").value,
-            confirm_password: document.getElementById("confirm_password").value,
+        let data = {};
+
+        if(document.getElementById("email")) {
+            data = {
+                email: document.getElementById("email").value.trim()
+            };
+        } else if(document.getElementById("phone")) {
+            const countryCode = document.getElementById("country-code").value;
+            const phone = document.getElementById("phone").value.trim();
+
+            data = {
+                phone: `${countryCode}${phone}`
+            };
         }
 
-        const URL = 'http://127.0.0.1:4000/users/register/initial/';
+        const URL = 'http://127.0.0.1:4000/users/forgot/';
         try {
             const response = await fetch(URL, {
                 method: 'POST',
@@ -205,32 +175,33 @@ async function registerUser() {
             });
 
             const result = await response.json();
-
             if(response.ok) {
                 Toast('success', result.mensaje);
-            
-                localStorage.setItem("temporal_id", result.temporal_id);
+                document.querySelector(".passForm").reset();
 
                 if(data.email) {
-                    localStorage.setItem("email", data.email);
-                    localStorage.removeItem("phone");
+                    localStorage.setItem("emailPassword", data.email);
+                    localStorage.removeItem("phonePassword");
                 }
                 if(data.phone) {
-                    localStorage.setItem("phone", data.phone);
-                    localStorage.removeItem("email");
-                }
+                    localStorage.setItem("phonePassword", data.phone);
+                    localStorage.removeItem("emailPassword");
+                }  
                 
-                document.querySelector(".registerForm").reset();
+                if(result.otp)
+                    localStorage.setItem("otpPass", result.otp);
+                
+                localStorage.setItem("otpTime", Date.now());
 
                 setTimeout(() => {
-                    window.location.href = 'otpRegister.html';
+                    window.location.href = 'otpPassword.html';
                 }, 2000);
             } else
                 Errores(result);
         } catch(e) {
             Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
         }
-    });
+    });  
 }
 
 
