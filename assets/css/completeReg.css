@@ -1,84 +1,352 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
-    /* ========== COLORS ========== */
-    --colorDarker: #1D5E21;
     --colorDark: #25772A;
-    --colorSec: #4CAF50;
+    --colorSec:  #4CAF50;
     --colorPrin: #29812D;
-    --colorWhite: #D9D9D9;
-    --colorErrorText: #670A1F;
-    --black: #000000;
+    --colorWhite:#D9D9D9;
+    --black:     #000000;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    text-decoration: none;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    text-decoration:none;
+    outline:none;
 }
 
-::before,
-::after { box-sizing: border-box; }
+body{
+    display:flex;
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+    background-color:var(--black);
+    color:var(--colorWhite);
+    font-family:'Figtree',sans-serif;
+}
 
-ul { list-style: none; }
+/* ================== LADO IZQUIERDO ================== */
+.left-section{
+    width:50%;
+}
+.left-section img{
+    width:100%;
+    height:130vh;   /* ← antes 100vh */
+    object-fit:cover;
+}
 
-button {
-    display: block;
-    background: none;
+
+/* ================== LADO DERECHO ================== */
+.right-section{
+    width:50%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding-top:1.5em;
+    padding-bottom:1.5em;
+    background-color:var(--black);
+    color:var(--colorWhite);
+}
+
+.right-section h1{
+    margin-top:0;
+    font-family:'Comfortaa',cursive;
+    font-size:50px;
+    letter-spacing:2px;
+    -webkit-text-stroke:5px var(--colorWhite);
+    text-stroke:5px var(--colorWhite);
+    paint-order:stroke fill;
+}
+
+.right-section .subtitle{
+    font-family:'Figtree',sans-serif;
+    font-size:20px;
+    margin-top:5px;
+    text-align:center;
+}
+.right-section .subtitle span{
+    color:var(--colorSec);
+    font-weight:600;
+}
+
+/* ================== CARD PRINCIPAL ================== */
+.prefs-card{
+    width:80%;
+    max-width:650px;
+    margin-top:1.7em;            /* separada del título, pero no tanto */
+    padding:2.2em 2.6em 2.1em 2.6em;
+    border:1.5px solid var(--colorSec);
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+.card-title{
+    font-family:'Figtree',sans-serif;
+    font-size:20px;
+    color:var(--colorSec);
+    margin-bottom:1em;
+    text-align:center;
+}
+
+/* Campos de texto */
+.field-row{
+    margin-bottom:1.1em;
+}
+.text-field{
+    width:100%;
+    background-color:var(--colorWhite);
+    border-radius:.4em;
+    padding:.7em 1.4em;
+    font-size:18px;
+    color:var(--black);
+    border:none;
+}
+
+/* ====== Campo fecha de nacimiento (type="date") ====== */
+.date-field{
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:textfield;
+    position:relative;
+    cursor:pointer;
+}
+.date-field::-webkit-calendar-picker-indicator{
+    cursor:pointer;
+    margin-right:.6em;
+}
+.date-field:focus{
+    outline:none;
+}
+
+/* ================== DISTRIBUCIÓN DE FILAS ================== */
+
+/* Filas divididas (Género / Altura) */
+.row-split{
+    display:flex;
+    gap:2.4em;
+    align-items:center;
+}
+
+/* Bloques con label + grupo de chips / control */
+.field-block{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:1.2em;
+    margin-bottom:1em;
+}
+
+/* Label fijo a la izquierda (Género, Objetivo, etc.) */
+.field-label{
+    font-size:18px;
+    margin:0;
+    min-width:130px;
+    white-space:nowrap;
+    margin-top:.35em;
+    font-weight:600;
+}
+
+/* El grupo de chips ocupa el resto del espacio */
+.field-block .chip-group{
+    flex:1;
+}
+
+/* Altura */
+.altura-block{
+    max-width:12em;
+}
+.altura-block .field-label{
+    min-width:auto;
+}
+.altura-wrap{
+    display:flex;
+    align-items:center;
+    gap:.4em;
+}
+.altura-input{
+    flex:1;
+    background-color:var(--colorWhite);
+    border-radius:.4em;
+    padding:.45em .6em;
+    font-size:16px;
+    color:var(--black);
+    border:none;
+    text-align:center;
+}
+.altura-unit{
+    font-size:14px;
+}
+
+/* Título verde: "Preferencias de entrenamiento" */
+.section-title{
+    font-size:20px;
+    color:var(--colorSec);
+    margin:1.6em 0 .6em;
+    font-weight:700;
+}
+
+/* ================== CHIP GROUPS (SELECTORES TIPO PASTILLA) ================== */
+.chip-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.75em;
+    align-items:center;
+}
+
+/* Ocultamos los radios, pero siguen controlando el estado (uno por grupo) */
+.chip-group input[type="radio"]{
+    display:none;
+}
+
+/* Pastilla base */
+.chip{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:.25em 2.1em .25em .9em;
+    border-radius:999px;
+    border:1px solid var(--colorSec);
+    background:transparent;
+    color:var(--colorWhite);
+    font-size:13px;
+    cursor:pointer;
+    transition:
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+/* Circulito indicador a la derecha */
+.chip::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    right:.55em;
+    transform:translateY(-50%);
+    width:.7em;
+    height:.7em;
+    border-radius:50%;
+    border:1.5px solid var(--colorSec);
+    background:transparent;
+    box-shadow:0 0 0 1px #000;
+    transition:
+        background-color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+/* Hover suave */
+.chip:hover{
+    background-color:rgba(41,129,45,0.25);
+}
+
+/* Estado seleccionado */
+.chip-group input[type="radio"]:checked + .chip{
+    background-color:var(--colorPrin);
+    border-color:var(--colorPrin);
+    color:var(--colorWhite);
+    box-shadow:0 0 0 1px var(--colorSec);
+}
+.chip-group input[type="radio"]:checked + .chip::after{
+    background-color:var(--colorSec);
+    border-color:#ffffff;
+    box-shadow:0 0 0 1px #000;
+}
+
+/* ================== BOTÓN REGÍSTRATE ================== */
+.logButton{
+    position:relative;
+    z-index:2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:2.4em;
+    width:15em;
+    height:2.6em;
+    background-color:var(--colorWhite);
     border: none;
-    cursor: pointer;
-}
-
-input {
-    border: none;
     outline: none;
+    box-shadow: none;
+    border-radius:10px;
+    color:var(--black);
+    font-size:18px;
+    font-family:'Comfortaa',sans-serif;
+    -webkit-text-stroke:1px var(--black);
+    text-stroke:1px var(--black);
+    gap:5.2em;
+    transition:all .4s ease;
+    overflow:hidden;
+    margin-left:auto;
+    margin-right:auto;
+}
+.logButton:hover{
+    -webkit-text-stroke:1px var(--colorWhite);
+    text-stroke:1px var(--colorWhite);
+    color:var(--colorWhite);
 }
 
-
-/* ============================== TOAST ============================== */
-.colored-toast.swal2-icon-error,
-.colored-toast.swal2-icon-success { background-color: var(--colorDark); }
-
-.colored-toast .swal2-title,
-.colored-toast .swal2-close,
-.colored-toast .swal2-html-container {
-    color: var(--colorWhite);
-    font-family: 'Figtree', sans-serif;
+.logButton .label{
+    position:relative;
+    z-index:2;
 }
 
+.logButton .bttn-line{
+    position:absolute;
+    height:70%;
+    width:0.2em;
+    background-color:var(--colorDark);
+    transition:all .4s ease;
+    z-index:1;
 
-/* ============================== BODY ============================== */
-body {
-    display: flex;
-    min-height: 100vh;
-    overflow: hidden;
+}
+.logButton .bttn-line.left{
+    left:0.5em;
+    border-radius:5px 0 0 5px;
 }
 
-.left-section { width: 50%; }
-
-.left-section img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
+.logButton:hover .bttn-line.left{
+    width:50%;
 }
 
-.right-section {
-    position: relative;
-    width: 50%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--black);
-    color: var(--colorWhite);
+.logButton .bttn-line.right{
+    right:0.5em;
+    border-radius:0 5px 5px 0;
 }
 
-.right-section img {
-    position: absolute;
-    top: 2em;
-    width: 5em;
+.logButton:hover .bttn-line.right{
+    width:50%;
+}
+
+/* ================== RESPONSIVE SIMPLE ================== */
+@media (max-width:980px){
+    body{flex-direction:column;}
+    .left-section{width:100%;}
+    .left-section img{height:35vh;}
+    .right-section{
+        width:100%;
+        height:auto;
+        padding-top:2em;
+        padding-bottom:2em;
+        justify-content:flex-start;
+    }
+    .prefs-card{width:90%;}
+    .row-split{flex-direction:column;}
+    .field-block{flex-direction:column;}
+    .field-label{min-width:0;}
+}
+
+/* --- Logo específico de esta pantalla --- */
+/* Logo centrado encima del título */
+.logo-pc{
+    width: 5.5em;        /* tamaño del logo */
     height: auto;
+    margin-bottom: 0.4em;
 }
+
+

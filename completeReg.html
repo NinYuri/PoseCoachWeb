@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>PoseCoach</title>
     <meta name="title" content="PoseCoach">
     <meta name="description" content="PoseCoach - Your personal exercise companion.">
     <link rel="icon" href="./assets/images/IconPC.ico">
 
     <!-- ======================= CSS ======================= -->
+    <!-- Usamos el mismo CSS base del primer archivo -->
     <link rel="stylesheet" href="./assets/css/completeReg.css">
 
     <!-- ======================= FONTS ======================= -->
@@ -26,12 +27,185 @@
 </head>
 
 <body>
+    <!-- ======================= LEFT SECTION ======================= -->
     <div class="left-section">
+        <!-- Ruta adaptada al esquema del primer archivo -->
         <img src="./assets/images/Register.webp" alt="Register">
     </div>
 
+    <!-- ======================= RIGHT SECTION ======================= -->
     <div class="right-section">
-        <img src="./assets/images/LogoPC.webp" alt="Logo">
+
+        <!-- LOGO -->
+        <img class="logo-pc" src="./assets/images/LogoPC.webp" alt="Logo PoseCoach">
+
+        <h1>REGISTRO</h1>
+        <p class="subtitle">¡<span>Únete</span> a la experiencia de PoseCoach!</p>
+
+        <!-- ======================= CARD ======================= -->
+        <div class="prefs-card">
+
+            <div class="card-title">Datos adicionales</div>
+
+            <!-- USERNAME -->
+            <div class="field-row">
+                <input type="text" class="text-field" placeholder="Usuario" required>
+            </div>
+
+            <!-- FECHA DE NACIMIENTO -->
+            <div class="field-row">
+                <input
+                    type="date"
+                    id="birthdate"
+                    name="birthdate"
+                    class="text-field date-field"
+                    required
+                >
+            </div>
+
+            <!-- GÉNERO + ALTURA -->
+            <div class="row-split">
+
+                <!-- GÉNERO -->
+                <div class="field-block">
+                    <div class="field-label">Género</div>
+
+                    <div class="chip-group">
+                        <label>
+                            <input type="radio" name="genero" value="masculino" checked>
+                            <span class="chip">Masculino</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="genero" value="femenino">
+                            <span class="chip">Femenino</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ALTURA -->
+                <div class="field-block altura-block">
+                    <div class="field-label">Altura</div>
+                    <div class="altura-wrap">
+                        <input type="number" class="altura-input" value="168" min="100" max="230">
+                        <span class="altura-unit">cm</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PREFERENCIAS -->
+            <div class="section-title">Preferencias de entrenamiento</div>
+
+            <!-- OBJETIVO -->
+            <div class="field-block">
+                <div class="field-label">Objetivo</div>
+
+                <div class="chip-group">
+
+                    <label>
+                        <input type="radio" name="objetivo" value="tonificar" checked>
+                        <span class="chip">Tonificar</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="objetivo" value="perder">
+                        <span class="chip">Perder peso</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="objetivo" value="musculo">
+                        <span class="chip">Ganar músculo</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="objetivo" value="mantener">
+                        <span class="chip">Mantenerme en forma</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- EXPERIENCIA -->
+            <div class="field-block">
+                <div class="field-label">Experiencia</div>
+
+                <div class="chip-group">
+
+                    <label>
+                        <input type="radio" name="experiencia" value="principiante" checked>
+                        <span class="chip">Principiante</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="experiencia" value="intermedio">
+                        <span class="chip">Intermedio</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="experiencia" value="avanzado">
+                        <span class="chip">Avanzado</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- EQUIPO DISPONIBLE -->
+            <div class="field-block">
+                <div class="field-label">Equipo disponible</div>
+
+                <div class="chip-group">
+
+                    <label>
+                        <input type="radio" name="equipo" value="mancuernas" checked>
+                        <span class="chip">Mancuernas</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="equipo" value="cuerpo">
+                        <span class="chip">Sólo mi cuerpo</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="equipo" value="bandas">
+                        <span class="chip">Bandas de resistencia</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="equipo" value="maquinas">
+                        <span class="chip">Máquinas de gimnasio</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- BOTÓN -->
+            <button class="logButton">
+                <div class="bttn-line left"></div>
+                <span class="label">REGÍSTRATE</span>
+                <div class="bttn-line right"></div>
+            </button>
+
+        </div>
     </div>
+
+    <!-- ======================= JS FECHA NACIMIENTO ======================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const birthInput = document.getElementById('birthdate');
+            if (!birthInput) return;
+
+            // Máxima fecha = hoy
+            const today = new Date().toISOString().split('T')[0];
+            birthInput.max = today;
+
+            // Mínima fecha permitida
+            birthInput.min = '1900-01-01';
+
+            // Bloquear escritura manual
+            birthInput.addEventListener('keydown', e => e.preventDefault());
+        });
+    </script>
+
 </body>
 </html>
