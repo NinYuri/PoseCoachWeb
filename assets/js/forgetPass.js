@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+/* ================================= LOADER ================================= */
+function showLoader() {
+    document.querySelector(".loader-overlay").style.display = "flex";
+}
+
+function hideLoader() {
+    document.querySelector(".loader-overlay").style.display = "none";
+}
+
+
 /* ================================= OPCIONES ================================= */
 // Lista de países - PHONE
 const countries = [
@@ -166,6 +176,8 @@ async function forgotPassword() {
 
         const URL = 'http://127.0.0.1:4000/users/forgot/';
         try {
+            showLoader();
+
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -175,6 +187,8 @@ async function forgotPassword() {
             });
 
             const result = await response.json();
+            hideLoader();
+
             if(response.ok) {
                 Toast('success', result.mensaje);
                 document.querySelector(".passForm").reset();
@@ -199,6 +213,7 @@ async function forgotPassword() {
             } else
                 Errores(result);
         } catch(e) {
+            hideLoader();
             Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
         }
     });  

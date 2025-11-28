@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+/* ================================= LOADER ================================= */
+function showLoader() {
+    document.querySelector(".loader-overlay").style.display = "flex";
+}
+
+function hideLoader() {
+    document.querySelector(".loader-overlay").style.display = "none";
+}
+
+
 /* ================================= CONTRASEÑA ================================= */
 function passwordVisibility() {
     const passwordInput = document.getElementById("password");
@@ -69,6 +79,8 @@ async function loginUser() {
 
         const URL = 'http://127.0.0.1:4000/users/login/';
         try {
+            showLoader();
+
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -78,10 +90,15 @@ async function loginUser() {
             });
             
             const result = await response.json();
+            hideLoader();
 
             if(response.ok) {
                 Toast('success', '¡Inicio de sesión exitoso!');
                 document.querySelector(".loginForm").reset();
+
+                localStorage.setItem("username", data.identificador);
+                localStorage.setItem("refresh_token", result.refresh_token);
+                localStorage.setItem("access_token", result.access_token);
                 
                 setTimeout(() => {
                     window.location.href = 'exercises.html';
@@ -89,6 +106,7 @@ async function loginUser() {
             } else
                 Errores(result);
         } catch(e) {
+            hideLoader();
             Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
         }
     });

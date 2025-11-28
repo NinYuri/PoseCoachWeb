@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+/* ================================= LOADER ================================= */
+function showLoader() {
+    document.querySelector(".loader-overlay").style.display = "flex";
+}
+
+function hideLoader() {
+    document.querySelector(".loader-overlay").style.display = "none";
+}
+
+
 /* ================================= CONTRASEÑA ================================= */
 function passwordVisibility() {
     const password = document.getElementById("password");
@@ -196,6 +206,8 @@ async function registerUser() {
 
         const URL = 'http://127.0.0.1:4000/users/register/initial/';
         try {
+            showLoader();
+
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -205,6 +217,7 @@ async function registerUser() {
             });
 
             const result = await response.json();
+            hideLoader();
 
             if(response.ok) {
                 Toast('success', result.mensaje);
@@ -228,6 +241,7 @@ async function registerUser() {
             } else
                 Errores(result);
         } catch(e) {
+            hideLoader();
             Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
         }
     });

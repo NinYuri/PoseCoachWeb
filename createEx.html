@@ -8,9 +8,10 @@
     <title>PoseCoach</title>
     <meta name="title" content="PoseCoach">
     <meta name="description" content="PoseCoach - Your personal exercise companion.">
+    <link rel="icon" href="./assets/images/IconPC.ico">
 
     <!-- ======================= CSS ======================= -->
-    <link rel="stylesheet" href="./assets/css/exercises.css">
+    <link rel="stylesheet" href="./assets/css/createEx.css">
 
     <!-- ======================= FONTS ======================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,17 +20,213 @@
 
     <!-- ======================= ICONS ======================= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ======================= SWEET ALERT ======================= -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
+    <!-- ======================= LOADER ======================= -->
+    <div class="loader-overlay">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+    
     <!-- ======================= NAVBAR ======================= -->
     <header>
         <nav class="navbar">
+            <h1></h1>
+
             <div class="nav-image">
                 <img src="./assets/images/LogoPC.webp" alt="PoseCoach">
             </div>
+
+            <div class="nav-options">
+                <h1 class="nav-opt create select">CREAR</h1>
+                <h1 class="nav-opt list">EJERCICIOS</h1> 
+                <h1 class="nav-opt logout">CERRAR SESIÓN</h1>
+            </div>
         </nav>
     </header>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <section class="background">
+        <div class="container">
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-left"></i>
+            </div>
+
+            <div class="left-section">
+                <img src="./assets/images/Load.webp" alt="Subir" class="back-image" id="preview-img">
+
+                <div class="load-image" id="trigger-upload">
+                    <img src="./assets/images/UploadImage.webp" alt="Upload" class="upload-icon">
+                    <h2>SUBIR IMAGEN *</h2>
+                </div>
+
+                <input type="file" id="image-input" accept=".jpg, .jpeg, .png, .gif, .webp" hidden>
+                
+                <div class="format">
+                    <p><span>Formatos permitidos: </span> .jpg, .jpeg, .png, .gif, .webp</p>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="input-container">
+                    <input type="text" id="exercise" name="exercise" placeholder="Nombre del Ejercicio *">
+                </div>
+
+                <div class="both">
+                    <div class="input-container half">
+                        <i class="fa-solid fa-chart-line icon"></i>
+                        <select class="selector" id="difficulty" name="difficulty">
+                            <option value="" disabled selected class="placeholder">Dificultad *</option>
+                            <option value="principiante" class="options">Principiante</option>
+                            <option value="intermedio" class="options">Intermedio</option>
+                            <option value="avanzado" class="options">Avanzado</option>
+                        </select>
+
+                        <span class="select-arrow"><i class="fa-solid fa-caret-down"></i></span>
+                    </div>
+
+                    <div class="input-container half">
+                        <i class="fa-solid fa-dumbbell icon"></i>
+                        <select class="selector" id="equipment" name="equipment">
+                            <option value="" disabled selected class="placeholder">Equipo *</option>
+                            <option value="mancuernas" class="options">Mancuernas</option>
+                            <option value="cuerpo" class="options">Sólo mi cuerpo</option>
+                            <option value="bandas" class="options">Bandas de resistencia</option>
+                            <option value="gimnasio" class="options">Máquinas de gimnasio</option>
+                        </select>
+
+                        <span class="select-arrow"><i class="fa-solid fa-caret-down"></i></span>
+                    </div>
+                </div>
+
+                <div class="muscles">
+                    <h1>GRUPO MUSCULAR PRINCIPAL*</h1>
+
+                    <div class="muscle-options">
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="pierna" />
+                            <span class="circle"></span>
+                            <span class="text">Pierna</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="gluteo"/>
+                            <span class="circle"></span>
+                            <span class="text">Glúteo</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="pecho"/>
+                            <span class="circle"></span>
+                            <span class="text">Pecho</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="espalda"/>
+                            <span class="circle"></span>
+                            <span class="text">Espalda</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="hombros"/>
+                            <span class="circle"></span>
+                            <span class="text">Hombros</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="brazos"/>
+                            <span class="circle"></span>
+                            <span class="text">Brazos</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="abdomen"/>
+                            <span class="circle"></span>
+                            <span class="text">Abdomen</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="radio" name="prin-group" value="cuerpo_completo"/>
+                            <span class="circle"></span>
+                            <span class="text">Cuerpo completo</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="muscles">
+                    <h1>GRUPO MUSCULAR SECUNDARIO</h1>
+
+                    <div class="muscle-options">
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="pierna"/>
+                            <span class="circle"></span>
+                            <span class="text">Pierna</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="gluteo"/>
+                            <span class="circle"></span>
+                            <span class="text">Glúteo</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="pecho"/>
+                            <span class="circle"></span>
+                            <span class="text">Pecho</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="espalda"/>
+                            <span class="circle"></span>
+                            <span class="text">Espalda</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="hombros"/>
+                            <span class="circle"></span>
+                            <span class="text">Hombros</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="brazos"/>
+                            <span class="circle"></span>
+                            <span class="text">Brazos</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="abdomen"/>
+                            <span class="circle"></span>
+                            <span class="text">Abdomen</span>
+                        </label>
+
+                        <label class="muscle-opt">
+                            <input type="checkbox" name="sec-group" value="cuerpo_completo"/>
+                            <span class="circle"></span>
+                            <span class="text">Cuerpo completo</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="note">Los campos marcados con * son obligatorios</div>
+            </div>
+
+            <div class="next">
+                <h1>></h1>
+            </div>
+        </div>
+    </section>
 
     <!-- ======================= FOOTER ======================= -->
     <footer>
@@ -39,5 +236,7 @@
             <a href="#" class="social-circle"><i class="fa-brands fa-instagram"></i></a>
         </div>
     </footer>
+
+    <script src="./assets/js/createEx.js"></script>
 </body>
 </html>

@@ -7,6 +7,16 @@ document.addEventListener("DOMContentLoaded", function() {
 let code = "";
 
 
+/* ================================= LOADER ================================= */
+function showLoader() {
+    document.querySelector(".loader-overlay").style.display = "flex";
+}
+
+function hideLoader() {
+    document.querySelector(".loader-overlay").style.display = "none";
+}
+
+
 /* ================================= OTP FOCUS ================================= */
 function otpDigits() {
     const digits = document.querySelectorAll(".otp-digit");
@@ -61,6 +71,8 @@ async function otpRegister() {
 
         const URL = 'http://127.0.0.1:4000/users/register/otp/';
         try {
+            showLoader();
+
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -70,6 +82,7 @@ async function otpRegister() {
             });
 
             const result = await response.json();
+            hideLoader();
 
             if(response.ok) {
                 Toast('success', result.mensaje);
@@ -81,8 +94,8 @@ async function otpRegister() {
             } else
                 Errores(result);
         } catch(e) {
+            hideLoader();
             Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
-            console.log(e);
         }
     });
 }
@@ -101,6 +114,8 @@ async function resendOTP() {
         
         const URL = 'http://127.0.0.1:4000/users/register/otpresend/';
         try {
+            showLoader();
+
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -110,6 +125,7 @@ async function resendOTP() {
             });
 
             const result = await response.json();
+            hideLoader();
 
             if(response.ok) {
                 Toast('success', result.mensaje);
@@ -118,6 +134,7 @@ async function resendOTP() {
             } else
                 Toast('error', result.error);
         } catch(e) {
+            hideLoader();
             Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
         }
     });

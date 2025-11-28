@@ -8,6 +8,16 @@ document.addEventListener("DOMContentLoaded", function() {
 let dateBirth = "";
 
 
+/* ================================= LOADER ================================= */
+function showLoader() {
+    document.querySelector(".loader-overlay").style.display = "flex";
+}
+
+function hideLoader() {
+    document.querySelector(".loader-overlay").style.display = "none";
+}
+
+
 /* ============================== FECHA DE NACIMIENTO ============================== */
 function formatDateBackend(date) {
     const year = date.getFullYear();
@@ -428,6 +438,8 @@ async function completeRegister() {
 
                 const URL = 'http://127.0.0.1:4000/users/register/complete/';
                 try {
+                    showLoader();
+
                     const response = await fetch(URL, {
                         method: 'POST',
                         headers: {
@@ -437,6 +449,8 @@ async function completeRegister() {
                     });
 
                     const result = await response.json();
+
+                    hideLoader();
 
                     if(response.ok) {
                         Toast('success', result.mensaje);
@@ -449,6 +463,7 @@ async function completeRegister() {
                     } else
                         Errores(result);
                 } catch(e) {
+                    hideLoader();
                     Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
                 }
             });
