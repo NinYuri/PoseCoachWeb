@@ -97,7 +97,7 @@ async function newPassword() {
             }
         }
 
-        const URL = 'http://127.0.0.1:4000/users/reset/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/reset/';
         try {
             showLoader();
 

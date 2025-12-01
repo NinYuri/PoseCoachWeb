@@ -299,6 +299,39 @@ body {
 
 .filter-options .filter-btn.select { color: var(--colorDark); }
 
+.filter-options .search {
+    position: relative;
+    height: 100%;
+    width: 20em;
+    margin-left: auto;
+}
+
+.search i {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: var(--colorWhite);
+    cursor: pointer;
+}
+
+.search i:hover { color: var(--colorSec); }
+
+.search input {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3em;
+    font-family: 'Figtree', sans-serif;
+    font-size: 16px;
+    color: var(--colorWhite);
+    background-color: rgba(217, 217, 217, 0.1);
+    border: 1.5px solid var(--colorWhite);
+    padding: 0.15em 2.3em 0.15em 0.6em;
+}
+
+.search input::placeholder { color: var(--colorWhite); }
+
 .selected-opt {
     display: flex;
     flex-wrap: wrap;

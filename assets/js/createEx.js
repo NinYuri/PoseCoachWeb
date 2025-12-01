@@ -49,7 +49,7 @@ async function navOptions() {
     logout.addEventListener("click", async () => {
         showLoader();
 
-        const URL = 'http://127.0.0.1:4000/users/logout/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/logout/';
         const data = {
             refresh_token: localStorage.getItem("refresh_token")
         }
@@ -490,7 +490,7 @@ async function nextPage() {
             formData.append("ideal_angles", JSON.stringify(idealAngles));
             formData.append("common_mistakes", JSON.stringify(mistakesList));
 
-            const URL = 'http://127.0.0.1:8000/exercises/all/';
+            const URL = 'https://pc-msexercises-990940385728.us-central1.run.app/exercises/all/';
             try {
                 showLoader();
 

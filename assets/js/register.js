@@ -204,7 +204,7 @@ async function registerUser() {
             confirm_password: document.getElementById("confirm_password").value,
         }
 
-        const URL = 'http://127.0.0.1:4000/users/register/initial/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/register/initial/';
         try {
             showLoader();
 

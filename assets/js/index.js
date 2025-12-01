@@ -77,7 +77,8 @@ async function loginUser() {
             password: document.getElementById("password").value,
         }
 
-        const URL = 'http://127.0.0.1:4000/users/login/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/login/';
+
         try {
             showLoader();
 

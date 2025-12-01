@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     username();
     navOptions();
     checkOptions();
+    searchName();
     filterSearch();
     buttons();    
 });
@@ -40,9 +41,9 @@ let currentBtn = null;
 
 // Backend
 const ENDPOINTS = {
-    equipment: "http://127.0.0.1:8000/exercises/equipment/?equipment=",
-    muscles: "http://127.0.0.1:8000/exercises/muscle-group/?muscle_group=",
-    difficulty: "http://127.0.0.1:8000/exercises/difficulty/?difficulty="
+    equipment: "https://pc-msexercises-990940385728.us-central1.run.app/exercises/equipment/?equipment=",
+    muscles: "https://pc-msexercises-990940385728.us-central1.run.app/exercises/muscle-group/?muscle_group=",
+    difficulty: "https://pc-msexercises-990940385728.us-central1.run.app/exercises/difficulty/?difficulty="
 }
 
 // Pagination
@@ -107,7 +108,7 @@ async function navOptions() {
     logout.addEventListener("click", async () => {
         showLoader();
 
-        const URL = 'http://127.0.0.1:4000/users/logout/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/logout/';
         const data = {
             refresh_token: localStorage.getItem("refresh_token")
         }
@@ -276,7 +277,7 @@ async function filterSearch() {
     showLoader();
 
     try {
-        const URL = "http://127.0.0.1:8000/exercises/all/";
+        const URL = "https://pc-msexercises-990940385728.us-central1.run.app/exercises/all/";
 
         const response = await fetch(URL, {
             method: "GET",
@@ -311,7 +312,7 @@ async function fetchFiltered() {
 
     let finalUrl = "";
     if(query === "")
-        finalUrl = "http://127.0.0.1:8000/exercises/all/";
+        finalUrl = "https://pc-msexercises-990940385728.us-central1.run.app/exercises/all/";
     else
         finalUrl = baseURL + query;
 
@@ -339,6 +340,30 @@ async function fetchFiltered() {
         Toast('error', 'Error de conexión. Por favor, intenta de nuevo más tarde');
     }
     hideLoader();
+}
+
+// Name
+async function searchName() {
+    document.querySelector(".fa-magnifying-glass").addEventListener("click", () => {
+        const name = document.getElementById("name").value;
+        let URL = "https://pc-msexercises-990940385728.us-central1.run.app/exercises/search/?name=";
+
+        if(name.trim() === "") {
+            Toast('error', 'Debes escribir el nombre del ejercicio a buscar');
+            return;
+        } else
+            URL += name;
+
+        //showLoader();
+        
+        try {
+            console.log(URL);
+        } catch(e) {
+            Toast('error', 'Error de conexión. Por favor, intenta de nuevo más tarde');
+        }
+
+        //hideLoader();
+    });
 }
 
 

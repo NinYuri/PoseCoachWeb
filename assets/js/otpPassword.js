@@ -104,7 +104,7 @@ async function resendOTP() {
             email: email,
         }
 
-        const URL = 'http://127.0.0.1:4000/users/password/otp/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/password/otp/';
         try {
             showLoader();
 

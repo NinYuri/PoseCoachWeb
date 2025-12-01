@@ -69,7 +69,7 @@ async function otpRegister() {
             otp: code,
         }
 
-        const URL = 'http://127.0.0.1:4000/users/register/otp/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/register/otp/';
         try {
             showLoader();
 
@@ -112,7 +112,7 @@ async function resendOTP() {
             email: email,
         }
         
-        const URL = 'http://127.0.0.1:4000/users/register/otpresend/';
+        const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/register/otpresend/';
         try {
             showLoader();
 

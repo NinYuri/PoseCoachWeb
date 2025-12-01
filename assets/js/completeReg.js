@@ -326,7 +326,7 @@ function trainValidate() {
 /* ================================= BACKEND REGISTRO ================================= */
 // USERNAME
 async function verifyUsername(username) {
-    const URL = 'http://127.0.0.1:4000/users/register/username/';
+    const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/register/username/';
 
     try {
         const response = await fetch(URL, {
@@ -436,7 +436,7 @@ async function completeRegister() {
                     equipment: document.getElementById("equipment").value
                 });
 
-                const URL = 'http://127.0.0.1:4000/users/register/complete/';
+                const URL = 'https://pc-msusers-990940385728.us-central1.run.app/users/register/complete/';
                 try {
                     showLoader();
 
