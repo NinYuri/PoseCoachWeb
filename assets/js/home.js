@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     username();
     navOptions();
-    create();
 });
 
 
@@ -15,7 +14,7 @@ function hideLoader() {
 }
 
 
-/* ================================= USER ================================= */
+/* ================================= USERNAME ================================= */
 function username() {
     const user = document.querySelector(".navbar h1");
     user.innerHTML = `${localStorage.getItem("username")}`
@@ -32,7 +31,7 @@ async function navOptions() {
     home.addEventListener("click", () => {
         window.location.href = "home.html";
     });
-    
+
     create.addEventListener("click", () => {
         window.location.href = "exercises.html";
     });
@@ -75,63 +74,5 @@ async function navOptions() {
             hideLoader();
             Toast('error', 'Error de conexión. Por favor, inténtalo de nuevo más tarde');
         }
-    });
-}
-
-
-/* ================================= CREATE ================================= */
-function create() {
-    document.querySelector(".newexButton").addEventListener("click", () => {
-        window.location.href = 'createEx.html'
-    });
-}
-
-
-/* ================================= ERRORES ================================= */
-function Errores(errores) {
-    if(!errores || !errores.error) {
-        Toast('error', 'Ocurrió un error inesperado');
-        return;
-    }
-
-    // Si el backend devuelve: "error": "mensaje"
-    if (typeof errores.error === "string") {
-        Toast('error', errores.error);
-        return;
-    }
-
-    // Si es error en non_field_errors: ["mensaje"]
-    if (errores.error.non_field_errors && Array.isArray(errores.error.non_field_errors)) {
-        Toast('error', errores.error.non_field_errors[0]);
-        return;
-    }
-
-    // Error estándar con arreglo
-    const primerError = Object.keys(errores.error)[0];
-    const message = errores.error[primerError][0];
-
-    Toast('error', message);
-}
-
-function Toast(icon, titulo) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-start',
-      iconColor: 'white',
-      customClass: {
-        popup: 'colored-toast'
-      },
-      showConfirmButton: false,
-      timer: 4000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-},
-    });
-
-    Toast.fire({
-      icon: icon,
-      title: titulo
     });
 }

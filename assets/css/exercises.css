@@ -30,6 +30,8 @@ button {
     cursor: pointer;
 }
 
+input { border-width: 0em; }
+
 
 /* ============================== TOAST ============================== */
 .swal2-container { z-index: 100000 !important; }
@@ -194,6 +196,7 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .navbar .nav-image img {
@@ -244,15 +247,30 @@ body {
     margin-left: 4.1em;
 }
 
-.exercises .title {
+.exercises .container.home { width: 40%; }
+
+.exercises .title,
+.exercises .brand {
     text-align: center;
-    font-size: 60px;
     font-family: 'Comfortaa', sans-serif;
-    color: var(--colorWhite);
     letter-spacing: 2px;
+    paint-order: stroke fill;
+}
+
+.exercises .title {
+    font-size: 60px;
+    color: var(--colorWhite);
     -webkit-text-stroke: 5px var(--colorWhite);
     text-stroke: 5px var(--colorWhite);
-    paint-order: stroke fill;
+}
+
+.exercises .brand {
+    font-size: 50px;
+    color: var(--colorSec);
+    -webkit-text-stroke: 3px var(--colorSec);
+    text-stroke: 3px var(--colorSec);
+    margin-top: 0.2em;
+    margin-bottom: 1.5em;
 }
 
 .exercises .subtitle {
@@ -263,6 +281,13 @@ body {
     color: var(--colorWhite);
     margin-top: 15px;
 }
+
+.subtitle.homeText {
+  font-size: 20px;
+  line-height: 1.6em;
+}
+
+.subtitle.homeText span { color: var(--colorSec); }
 
 .exercises .newexButton {
     position: relative;

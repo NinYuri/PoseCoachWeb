@@ -101,7 +101,7 @@ async function loginUser() {
                 localStorage.setItem("access_token", result.access_token);
                 
                 setTimeout(() => {
-                    window.location.href = 'exercises.html';
+                    window.location.href = 'home.html';
                 }, 2000);
             } else
                 Errores(result);

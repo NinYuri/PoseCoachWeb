@@ -31,10 +31,7 @@ button {
     cursor: pointer;
 }
 
-input {
-    border: none;
-    outline: none;
-}
+input { border-width: 0em; }
 
 
 /* ============================== REUSABLE ============================== */
