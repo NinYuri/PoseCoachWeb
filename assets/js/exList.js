@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     navOptions();
     checkOptions();
     searchName();
+    deleteName();
     filterSearch();
     buttons();    
 });
@@ -266,6 +267,10 @@ function renderTable(data) {
             <td><span class="dif-label ${colorDif}">${ex.difficulty_display}</span></td>
         `;
 
+        tr.addEventListener("click", () => {
+            window.location.href = `detailEx.html?id=${ex.id}`;
+        });
+
         tbody.appendChild(tr);
     });
 }
@@ -344,25 +349,50 @@ async function fetchFiltered() {
 
 // Name
 async function searchName() {
-    document.querySelector(".fa-magnifying-glass").addEventListener("click", () => {
+    document.querySelector(".fa-magnifying-glass").addEventListener("click", async() => {
         const name = document.getElementById("name").value;
         let URL = "https://pc-msexercises-990940385728.us-central1.run.app/exercises/search/?name=";
 
         if(name.trim() === "") {
             Toast('error', 'Debes escribir el nombre del ejercicio a buscar');
             return;
-        } else
-            URL += name;
-
-        //showLoader();
+        } 
         
+        URL += name;
+        showLoader();
+
         try {
-            console.log(URL);
+            const response = await fetch(URL, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
+                    "Content-Type": "application/json"
+                }                
+            });
+            
+            const result = await response.json();
+
+            if(response.ok) {
+                exercises = result;
+                currentPage = 1;
+                paintCurrentPage();
+                updateButtons();
+            } else
+                Errores(result);
         } catch(e) {
             Toast('error', 'Error de conexión. Por favor, intenta de nuevo más tarde');
         }
+        
+        hideLoader();
+    });
+}
 
-        //hideLoader();
+async function deleteName() {
+    document.getElementById("name").addEventListener("input", async() => {
+        const value = document.getElementById("name").value.trim();
+
+        if(value === "") 
+            await filterSearch();
     });
 }
 

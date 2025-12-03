@@ -11,7 +11,7 @@
     <link rel="icon" href="./assets/images/IconPC.ico">
 
     <!-- ======================= CSS ======================= -->
-    <link rel="stylesheet" href="./assets/css/exList.css">
+    <link rel="stylesheet" href="./assets/css/detailEx.css">
 
     <!-- ======================= FONTS ======================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,56 +58,76 @@
         </nav>
     </header>
 
-    <!-- ======================= CONTENT ======================= -->
     <section class="background">
         <div class="container">
-            <div class="prev disabled">
-                <h1><</h1>
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-left"></i>
             </div>
 
-            <div class="filters">
-                <div class="filter-options">
-                    <h1 class="filter-btn select" data-type="equipment">EQUIPO</h1>
-                    <h1 class="filter-btn" data-type="difficulty">DIFICULTAD</h1>
-                    <h1 class="filter-btn" data-type="muscles">MÚSCULOS</h1>
+            <h1 class="title">FICHA DEL <span>EJERCICIO</span></h1>
 
-                    <div class="search">
-                        <input type="text" id="name" name="name" placeholder="Buscar">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="ex-sheet">
+                <div class="image-ex">
+                    <div class="image"></div>
+
+                    <div class="butImg">
+                        <button class="btn edImage">
+                            <div class="more">
+                                <i class="fa-solid fa-pencil"></i>
+                            </div>
+                                
+                            <div class="text">Editar</div>
+                        </button>
                     </div>
                 </div>
 
-                <div class="selected-opt">
+                <div class="info-ex">
+                    <div class="info-container">
+                        <div class="field">
+                            <div class="circle"><i class="fa-solid fa-pencil"></i></div>
+                            <p class="name-field">Nombre:</p>
+                            <div class="name"></div>
+                        </div>
+
+                        <div class="field">
+                            <div class="circle"><i class="fa-solid fa-pencil"></i></div>
+                            <p class="name-field">Músculo Principal:</p>
+                            <div class="prin-muscle"></div>
+                        </div>
+
+                        <div class="field">
+                            <div class="circle"><i class="fa-solid fa-pencil"></i></div>
+                            <p class="name-field">Músculos Secundarios:</p>
+                            <div class="second-muscle"></div>
+                        </div>
+
+                        <div class="field">
+                            <div class="circle"><i class="fa-solid fa-pencil"></i></div>
+                            <p class="name-field">Dificultad:</p>
+                            <div class="difficulty"></div>
+                        </div>
+
+                        <div class="field">
+                            <div class="circle"><i class="fa-solid fa-pencil"></i></div>
+                            <p class="name-field">Equipo:</p>
+                            <div class="equip"></div>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="updateBtn" type="button">
+                            <div class="bttn-line left"></div>
+                            <span class="label">ACTUALIZAR</span>
+                            <div class="bttn-line right"></div>
+                        </button>
+
+                        <button class="deleteBtn" type="button">
+                            <div class="bttn-line left"></div>
+                            <span class="label">ELIMINAR</span>
+                            <div class="bttn-line right"></div>
+                        </button>
+                    </div>
                 </div>
-            </div>
-
-            <div class="lista">
-                <div class="titles">
-                    <div class="titleOpt exe">
-                        <h1>Ejercicio</h1>
-                    </div>
-
-                    <div class="titleOpt musc">
-                        <h1>Músculo</h1>
-                    </div>
-
-                    <div class="titleOpt equip">
-                        <h1>Equipo</h1>
-                    </div>
-
-                    <div class="titleOpt diff">
-                        <h1>Dificultad</h1>
-                    </div>
-                </div>
-
-                <table class="exe-table">
-                    <tbody id="exercise-body">
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="next disabled">
-                <h1>></h1>
             </div>
         </div>
     </section>
@@ -121,6 +141,6 @@
         </div>
     </footer>
 
-    <script src="./assets/js/exList.js"></script>
+    <script src="./assets/js/detailEx.js"></script>
 </body>
 </html>
