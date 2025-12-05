@@ -34,29 +34,58 @@ input { border-width: 0em; }
 
 
 /* ============================== REUSABLE ============================== */
-.input-container {
-    position: relative;
-    width: 100%;
-}
+.name,
+.prin-muscle,
+.difficulty,
+.second-muscle { position: relative; }
 
-.input-container i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 26px;
-    color: var(--colorPrin);
-}
+.name { width: 100%; }
 
-.input-container .icon { left: 10px; }
+.prin-muscle { width: 60%; }
 
-.input-container input {
+.second-muscle { width: 51%; }
+
+.difficulty { width: 74%; }
+
+.equip { width: 80%; }
+
+.name input {
     width: 100%;
     border-radius: 0.4em;
     font-family: 'Figtree', sans-serif;
-    font-size: 19px;
+    font-size: 17px;
     color: var(--black);
-    padding: 0.6em 1em 0.6em 2.5em;
+    padding: 0.3em 0.6em;
 }
+
+.selector {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 0.4em;
+    font-size: 17px;
+    font-family: 'Figtree', 'sans-serif';
+    padding: 0.3em 0.6em;
+    cursor: pointer;
+    color: #727272;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.select-arrow {
+    position: absolute;
+    font-size: 20px;
+    pointer-events: none;
+    color: var(--colorPrin);
+    transform: translateY(0.2em) translateX(-1.1em)
+}
+
+.selector .placeholder { color: #727272; }
+
+.selector .options { color: var(--black); }
+
+.selector.selected { color: var(--black); }
 
 
 /* ============================== TOAST ============================== */
@@ -444,6 +473,8 @@ body {
     margin-right: 0.7em;
     cursor: pointer;
 }
+
+.circle.exName { padding: 0.8em; }
 
 .field .name-field { 
     font-weight: 600;
